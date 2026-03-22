@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/micro-service-cloud-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-service-cloud-consumer-openfeign/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-service-cloud-consumer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-service-cloud-eureka-three/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-service-cloud-eureka-two/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-service-cloud-eureka/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-service-cloud-provider-8002/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-service-cloud-provider-8003/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/micro-service-cloud-provider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+  </component>
+</project>

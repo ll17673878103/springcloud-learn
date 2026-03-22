@@ -1,0 +1,75 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "UserServiceApplication",
+            "request": "launch",
+            "mainClass": "com.learn.userservice.UserServiceApplication",
+            "projectName": "user-service"
+        },
+        {
+            "type": "java",
+            "name": "EurekaServerApplication",
+            "request": "launch",
+            "mainClass": "com.learn.eurekaserver.EurekaServerApplication",
+            "projectName": "eureka-server"
+        },
+        {
+            "type": "java",
+            "name": "MicroServiceCloudProvider8003Application",
+            "request": "launch",
+            "mainClass": "com.sc.micro.MicroServiceCloudProvider8003Application",
+            "projectName": "micro-service-cloud-provider-8003"
+        },
+        {
+            "type": "java",
+            "name": "MicroServiceCloudProvider8002Application",
+            "request": "launch",
+            "mainClass": "com.sc.micro.MicroServiceCloudProvider8002Application",
+            "projectName": "micro-service-cloud-provider-8002"
+        },
+        {
+            "type": "java",
+            "name": "MicroServiceCloudConSumerApplication",
+            "request": "launch",
+            "mainClass": "com.sc.micro.MicroServiceCloudConSumerApplication",
+            "projectName": "micro-service-cloud-consumer"
+        },
+        {
+            "type": "java",
+            "name": "MicroServiceCloudProviderApplication",
+            "request": "launch",
+            "mainClass": "com.sc.micro.MicroServiceCloudProviderApplication",
+            "projectName": "micro-service-cloud-provider"
+        },
+        {
+            "type": "java",
+            "name": "MicroServiceCloudEurekaThreeApplication",
+            "request": "launch",
+            "mainClass": "com.sc.micro.MicroServiceCloudEurekaThreeApplication",
+            "projectName": "micro-service-cloud-eureka-three"
+        },
+        {
+            "type": "java",
+            "name": "MicroServiceCloudEurekaTwoApplication",
+            "request": "launch",
+            "mainClass": "com.sc.micro.MicroServiceCloudEurekaTwoApplication",
+            "projectName": "micro-service-cloud-eureka-two"
+        },
+        {
+            "type": "java",
+            "name": "MicroServiceCloudEurekaApplication",
+            "request": "launch",
+            "mainClass": "com.sc.micro.MicroServiceCloudEurekaApplication",
+            "projectName": "micro-service-cloud-eureka"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot Application",
+            "request": "launch",
+            "mainClass": "",
+            "projectName": "",
+            "vmArgs": "-Xms512M -Xmx2048M -Djps.track.ap.dependencies=false"
+        }
+    ]
+}

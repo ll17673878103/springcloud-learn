@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="micro-service-cloud-eureka-two" />
+        <module name="micro-service-cloud-provider-8002" />
+        <module name="micro-service-cloud-provider-8003" />
+        <module name="micro-service-cloud-eureka" />
+        <module name="micro-service-cloud-consumer-openFeign" />
+        <module name="micro-service-cloud-eureka-three" />
+        <module name="micro-service-cloud-consumer" />
+        <module name="micro-service-cloud-provider" />
+        <module name="micro-service-cloud-api" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="micro-service-cloud-api" options="-parameters" />
+      <module name="micro-service-cloud-consumer" options="-parameters" />
+      <module name="micro-service-cloud-consumer-openFeign" options="-parameters" />
+      <module name="micro-service-cloud-eureka" options="-parameters" />
+      <module name="micro-service-cloud-eureka-three" options="-parameters" />
+      <module name="micro-service-cloud-eureka-two" options="-parameters" />
+      <module name="micro-service-cloud-provider" options="-parameters" />
+      <module name="micro-service-cloud-provider-8002" options="-parameters" />
+      <module name="micro-service-cloud-provider-8003" options="-parameters" />
+      <module name="springcloud-learn" options="" />
+    </option>
+  </component>
+</project>
