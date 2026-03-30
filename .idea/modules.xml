@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/micro-service-cloud-api/micro-service-cloud-api.iml" filepath="$PROJECT_DIR$/micro-service-cloud-api/micro-service-cloud-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-service-cloud-consumer/micro-service-cloud-consumer.iml" filepath="$PROJECT_DIR$/micro-service-cloud-consumer/micro-service-cloud-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-service-cloud-consumer-openfeign/micro-service-cloud-consumer-openFeign.iml" filepath="$PROJECT_DIR$/micro-service-cloud-consumer-openfeign/micro-service-cloud-consumer-openFeign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-service-cloud-eureka/micro-service-cloud-eureka.iml" filepath="$PROJECT_DIR$/micro-service-cloud-eureka/micro-service-cloud-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-service-cloud-eureka-three/micro-service-cloud-eureka-three.iml" filepath="$PROJECT_DIR$/micro-service-cloud-eureka-three/micro-service-cloud-eureka-three.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-service-cloud-eureka-two/micro-service-cloud-eureka-two.iml" filepath="$PROJECT_DIR$/micro-service-cloud-eureka-two/micro-service-cloud-eureka-two.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-service-cloud-provider/micro-service-cloud-provider.iml" filepath="$PROJECT_DIR$/micro-service-cloud-provider/micro-service-cloud-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-service-cloud-provider-8002/micro-service-cloud-provider-8002.iml" filepath="$PROJECT_DIR$/micro-service-cloud-provider-8002/micro-service-cloud-provider-8002.iml" />
+      <module fileurl="file://$PROJECT_DIR$/micro-service-cloud-provider-8003/micro-service-cloud-provider-8003.iml" filepath="$PROJECT_DIR$/micro-service-cloud-provider-8003/micro-service-cloud-provider-8003.iml" />
+    </modules>
+  </component>
+</project>

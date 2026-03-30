@@ -7,17 +7,21 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="micro-service-cloud-eureka-two" />
-        <module name="micro-service-cloud-provider-8002" />
-        <module name="micro-service-cloud-provider-8003" />
-        <module name="micro-service-cloud-eureka" />
-        <module name="micro-service-cloud-consumer-openFeign" />
-        <module name="micro-service-cloud-eureka-three" />
-        <module name="micro-service-cloud-consumer" />
-        <module name="micro-service-cloud-provider" />
-        <module name="micro-service-cloud-api" />
+        <module name="user-service" />
+        <module name="eureka-server" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="micro-service-cloud-api" target="17" />
+      <module name="micro-service-cloud-consumer" target="17" />
+      <module name="micro-service-cloud-consumer-openFeign" target="17" />
+      <module name="micro-service-cloud-eureka" target="17" />
+      <module name="micro-service-cloud-eureka-three" target="17" />
+      <module name="micro-service-cloud-eureka-two" target="17" />
+      <module name="micro-service-cloud-provider" target="17" />
+      <module name="micro-service-cloud-provider-8002" target="17" />
+      <module name="micro-service-cloud-provider-8003" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
