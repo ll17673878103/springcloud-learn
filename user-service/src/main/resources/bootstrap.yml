@@ -6,15 +6,15 @@ spring:
     import: optional:nacos:${spring.application.name}-${spring.profiles.active}
 
   profiles:
-    active: dev
+    active: local
 
   cloud:
     nacos:
       server-addr: 101.43.103.32:8848
       # 这里是在nacos注册中心里注册服务
       discovery:
-        namespace: public
+        namespace: c8086219-54ec-4b09-bcc3-1b13193f770e
      # nacos下配置config会让服务使用nacos的配置文件，反之用本地服务自己的application
       config:
-        namespace: public
+        namespace: c8086219-54ec-4b09-bcc3-1b13193f770e
         file-extension: yaml

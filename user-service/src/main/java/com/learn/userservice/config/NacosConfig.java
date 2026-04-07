@@ -1,6 +1,5 @@
 package com.learn.userservice.config;
 
-import com.alibaba.nacos.api.config.annotation.NacosConfigurationProperties;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -10,8 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @data 2026/3/30 17:06
  */
 @Data
-@ConfigurationProperties
-@NacosConfigurationProperties(dataId = "user-service-${spring.profiles.active}.yaml", autoRefreshed = true)
+@ConfigurationProperties()
 public class NacosConfig {
 
     private String env;

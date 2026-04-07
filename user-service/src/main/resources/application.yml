@@ -1,3 +1,33 @@
 server:
   port: 8081
 
+user:
+  cache:
+    timeout: 300
+  page:
+    size: 10
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.31.183:3306/springcloud?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: luolei0525
+
+  data:
+    redis:
+      host: 101.43.103.32
+      port: 6379
+      password: ll291451
+      timeout: 1000ms
+      database: 0
+
+logging:
+  level:
+    com.learn: debug
+    org.springframework: info
+
+# 业务配置
+app:
+  env: local
+  version: 1.0
