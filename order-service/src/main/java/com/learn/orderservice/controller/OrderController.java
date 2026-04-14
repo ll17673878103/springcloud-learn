@@ -47,6 +47,11 @@ public class OrderController {
         // FeignAuthInterceptor 会自动传递 Token
         Map<String, Object> userInfo = userClient.getUser(userId);
 
+        // 检查是否触发了降级（降级时 code=503）
+        if (userInfo.containsKey("code") && Integer.valueOf(503).equals(userInfo.get("code"))) {
+            return userInfo;
+        }
+
         return Map.of(
                 "code", 200,
                 "message", "订单创建成功",

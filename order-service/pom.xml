@@ -51,6 +51,17 @@
             <version>0.12.3</version>
             <scope>runtime</scope>
         </dependency>
+        <!-- OkHttp（Feign 底层客户端） -->
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
+        </dependency>
+
+        <!-- Sentinel（熔断降级） -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
     </dependencies>
 
 

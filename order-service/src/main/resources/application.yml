@@ -9,3 +9,34 @@ spring:
       discovery:
         server-addr: 101.43.103.32:8848
         namespace: c8086219-54ec-4b09-bcc3-1b13193f770e
+    # OpenFeign 超时配置
+    openfeign:
+      client:
+        config:
+          # 全局默认配置
+          default:
+            connect-timeout: 3000    # 连接超时 3秒
+            read-timeout: 5000       # 读取超时 5秒
+          # 针对特定服务的配置（优先级高于 default）
+          user-service:
+            connect-timeout: 2000    # user-service 连接超时 2秒
+            read-timeout: 3000       # user-service 读取超时 3秒
+      # 底层客户端替换为 OkHttp（连接池，性能更好）
+      okhttp:
+        enabled: true
+
+# 方案A：Sentinel 配置（推荐）
+sentinel:
+  transport:
+    dashboard: localhost:8080    # Sentinel Dashboard 地址（可选）
+    port: 8719                  # 与 Dashboard 通信的端口
+  eagerness: true               # 启动时立即初始化 Sentinel
+
+feign:
+  sentinel:
+    enabled: true               # 开启 Feign 对 Sentinel 的支持
+
+# Feign 日志级别需要在 logging.level 中配置对应接口为 debug
+logging:
+  level:
+    com.learn.orderservice.feign: debug
