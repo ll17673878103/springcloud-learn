@@ -1,0 +1,18 @@
+# dev 环境：连 Nacos 配置中心
+# Spring Boot 自动加载此文件（当 bootstrap.yml 中 active=dev 时）
+
+spring:
+  cloud:
+    nacos:
+      server-addr: 101.43.103.32:8848
+      # 服务发现（注册中心）
+      discovery:
+        namespace: c8086219-54ec-4b09-bcc3-1b13193f770e
+      # 配置中心
+      config:
+        namespace: c8086219-54ec-4b09-bcc3-1b13193f770e
+        file-extension: yaml
+
+  # 从 Nacos 导入配置：自动查找 user-service-dev.yaml
+  config:
+    import: optional:nacos:${spring.application.name}-${spring.profiles.active}

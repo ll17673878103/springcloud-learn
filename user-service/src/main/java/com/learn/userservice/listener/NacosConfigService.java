@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+
 import jakarta.annotation.PostConstruct;
 import java.util.Properties;
 
@@ -16,6 +18,7 @@ import java.util.Properties;
  */
 @Slf4j
 @Component
+@ConditionalOnProperty(name = "spring.cloud.nacos.server-addr")
 public class NacosConfigService {
 
     @Value("${spring.cloud.nacos.server-addr}")
