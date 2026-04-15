@@ -7,10 +7,10 @@ spring:
       server-addr: 101.43.103.32:8848
       # 服务发现（注册中心）
       discovery:
-        namespace: c8086219-54ec-4b09-bcc3-1b13193f770e
+        namespace: a4444b64-9f98-4af6-882c-c3d265af4987
       # 配置中心
       config:
-        namespace: c8086219-54ec-4b09-bcc3-1b13193f770e
+        namespace: a4444b64-9f98-4af6-882c-c3d265af4987
         file-extension: yaml
 
   # 从 Nacos 导入配置：自动查找 user-service-dev.yaml

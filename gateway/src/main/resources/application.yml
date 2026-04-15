@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 101.43.103.32:8848
+        namespace: a4444b64-9f98-4af6-882c-c3d265af4987
+    gateway:
+      routes:
+        # 路由1: 用户服务
+       - id: user-service-routes # 路由ID 唯一标识
+         uri: lb://user-service # 目标地址 （lb:// 表示负载均衡 + 服务名）
+         predicates:
+           - Path=/api/user/** # 匹配条件：路径以/user开头
+         filters:
+           - StripPrefix=1   # 转发前去掉第一层路径（/api）
+         # 路由2: 订单服务
+       - id: order-service-route       # ← - 后有空格
+         uri: lb://order-service
+         predicates:
+           - Path=/api/order/**         # ← - 后有空格
+         filters:
+           - StripPrefix=1              # ← - 后有空格（这个就是你漏掉的地方）
+
