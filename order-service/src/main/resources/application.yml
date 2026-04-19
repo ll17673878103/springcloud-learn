@@ -36,6 +36,14 @@ feign:
   sentinel:
     enabled: true               # 开启 Feign 对 Sentinel 的支持
 
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://101.43.103.32:9411/api/v2/spans
+
 # Feign 日志级别需要在 logging.level 中配置对应接口为 debug
 logging:
   level:

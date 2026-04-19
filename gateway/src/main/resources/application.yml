@@ -10,19 +10,49 @@ spring:
         server-addr: 101.43.103.32:8848
         namespace: a4444b64-9f98-4af6-882c-c3d265af4987
     gateway:
+      # 跨域配置（CORS）- 在网关层统一处理，前端不用直接访问各微服务
+      globalcors:
+        cors-configurations:
+          '[/**]': # 对所有路径生效
+            allowed-origins: # 允许哪些来源（前端地址）
+              - "http://localhost:3000"   # 本地开发前端
+              - "http://localhost:5173"   # Vite 默认端口
+              - "http://127.0.0.1:3000"
+            allowed-methods: # 允许的 HTTP 方法
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS              # 预检请求必须允许
+            allowed-headers: # 允许的请求头
+              - "*"                  # 全部允许（包括 Authorization）
+            allow-credentials: true   # 允许携带 Cookie / Token
+            max-age: 3600             # 预检请求缓存时间（秒），1小时内不用重复预检
       routes:
-        # 路由1: 用户服务
-       - id: user-service-routes # 路由ID 唯一标识
-         uri: lb://user-service # 目标地址 （lb:// 表示负载均衡 + 服务名）
-         predicates:
-           - Path=/api/user/** # 匹配条件：路径以/user开头
-         filters:
-           - StripPrefix=1   # 转发前去掉第一层路径（/api）
-         # 路由2: 订单服务
-       - id: order-service-route       # ← - 后有空格
-         uri: lb://order-service
-         predicates:
-           - Path=/api/order/**         # ← - 后有空格
-         filters:
-           - StripPrefix=1              # ← - 后有空格（这个就是你漏掉的地方）
+        # 路由1: 用户服务（包含 auth、user、config 等路径）
+        - id: user-service-routes # 路由ID 唯一标识
+          uri: lb://user-service # 目标地址 （lb:// 表示负载均衡 + 服务名）
+          predicates:
+            - Path=/api/user/**,/api/auth/**,/api/config/**  # 匹配多个路径
+          filters:
+            - StripPrefix=1   # 转发前去掉第一层路径（/api）
+          # 路由2: 订单服务
+        - id: order-service-route       # ← - 后有空格
+          uri: lb://order-service
+          predicates:
+            - Path=/api/order/**         # ← - 后有空格
+          filters:
+            - StripPrefix=1              # ← - 后有空格（这个就是你漏掉的地方）
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://101.43.103.32:9411/api/v2/spans
 
+logging:
+  level:
+    io.micrometer.tracing: debug
+    brave: debug
+    org.springframework.boot.autoconfigure: debug
