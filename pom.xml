@@ -23,6 +23,8 @@
         <spring-cloud-alibaba.version>2023.0.1.0</spring-cloud-alibaba.version>
         <spring-cloud-starter-bootstrap.version>3.0.3</spring-cloud-starter-bootstrap.version>
         <lombok.version>1.18.28</lombok.version>
+        <micrometer-tracing.version>1.2.0</micrometer-tracing.version>
+        <zipkin-reporter.version>2.16.3</zipkin-reporter.version>
     </properties>
 
     <dependencyManagement>
@@ -58,6 +60,16 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
                 <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.micrometer</groupId>
+                <artifactId>micrometer-tracing-bridge-brave</artifactId>
+                <version>${micrometer-tracing.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.zipkin.reporter2</groupId>
+                <artifactId>zipkin-reporter-brave</artifactId>
+                <version>${zipkin-reporter.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
