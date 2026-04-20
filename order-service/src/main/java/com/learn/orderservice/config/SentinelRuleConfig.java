@@ -36,12 +36,13 @@ public class SentinelRuleConfig {
     public void initFlowRules() {
         List<FlowRule> rules = new ArrayList<>();
 
-        // 限制 user-service 的 QPS 不超过 10
-        // 超出限制的请求会触发降级
+        // 限制 user-service 的 QPS 不超过 5
+        // 作为第二道防线：Gateway 放行 10/s，这里限制对 user-service 的调用为 5/s
+        // 超出限制的请求会触发 Feign 降级（UserClientFallbackFactory）
         FlowRule userRule = new FlowRule();
         userRule.setResource("GET:http://user-service/user/{id}");
         userRule.setGrade(RuleConstant.FLOW_GRADE_QPS);
-        userRule.setCount(10);  // 每秒最多 10 次请求
+        userRule.setCount(5);  // 每秒最多 5 次请求
         userRule.setLimitApp("default");
         rules.add(userRule);
 
@@ -58,24 +59,26 @@ public class SentinelRuleConfig {
         List<DegradeRule> rules = new ArrayList<>();
 
         // 慢调用比例熔断规则
-        // 50% 的调用超过 1 秒 → 熔断 10 秒
+        // 50% 的调用超过 500ms → 熔断 10 秒
+        // minRequestAmount=5，在 Gateway 放行 10/s 的场景下，1 秒内即可积累足够样本
         DegradeRule slowRule = new DegradeRule("GET:http://user-service/user/{id}");
         slowRule.setGrade(RuleConstant.DEGRADE_GRADE_RT);   // 慢调用比例
-        slowRule.setCount(1000);                             // 慢调用阈值：1秒
-        slowRule.setSlowRatioThreshold(0.5);                 // 慢调用比例阈值：50%
-        slowRule.setTimeWindow(10);                          // 熔断持续时长：10秒
-        slowRule.setMinRequestAmount(5);                     // 最小请求数：5
-        slowRule.setStatIntervalMs(10000);                   // 统计时长：10秒
+        slowRule.setCount(500);                             // 慢调用阈值：500ms（正常调用不应超过此值）
+        slowRule.setSlowRatioThreshold(0.5);                // 慢调用比例阈值：50%
+        slowRule.setTimeWindow(10);                         // 熔断持续时长：10秒
+        slowRule.setMinRequestAmount(5);                    // 最小请求数：5
+        slowRule.setStatIntervalMs(5000);                   // 统计时长：5秒
         rules.add(slowRule);
 
         // 异常比例熔断规则
         // 50% 的调用抛出异常 → 熔断 10 秒
+        // 与慢调用熔断共享统计窗口，任一条件满足即触发
         DegradeRule errorRule = new DegradeRule("GET:http://user-service/user/{id}");
         errorRule.setGrade(RuleConstant.DEGRADE_GRADE_EXCEPTION_RATIO);  // 异常比例
         errorRule.setCount(0.5);                                          // 异常比例阈值：50%
         errorRule.setTimeWindow(10);                                      // 熔断持续时长：10秒
         errorRule.setMinRequestAmount(5);                                 // 最小请求数：5
-        errorRule.setStatIntervalMs(10000);                               // 统计时长：10秒
+        errorRule.setStatIntervalMs(5000);                                // 统计时长：5秒
         rules.add(errorRule);
 
         DegradeRuleManager.loadRules(rules);

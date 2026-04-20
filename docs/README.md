@@ -14,6 +14,7 @@
 | 6 | 服务熔断与降级 | ✅ |
 | 7 | API 网关 | ✅ |
 | 8 | 链路追踪 | ✅ |
+| 9 | Sentinel 服务熔断与降级 | ✅ |
 
 > 📌 **当前策略**：先完整学习待学习组件（Seata/RocketMQ/XXL-JOB 等），后续新建独立项目进行实战。
 
@@ -40,7 +41,7 @@
 | 3. Nacos | Nacos 安装(Docker)、namespace、@EnableDiscoveryClient、服务注册 |
 | 4. Nacos 配置中心 | bootstrap.yml、Profile 多环境(dev/pro)、动态配置刷新、@RefreshScope |
 | 5. 服务调用与负载均衡 | OpenFeign、@FeignClient、LoadBalancer 轮询策略、OkHttp 底层客户端、超时配置 |
-| 6. 服务熔断与降级 | Sentinel 流控、Sentinel 熔断、FallbackFactory 降级、Token 透传(FeignAuthInterceptor)、JWT 鉴权 |
+| 6. 服务熔断与降级 | Sentinel 流控(SentinelRuleConfig)、Sentinel 熔断(DegradeRule)、Gateway 网关限流(SentinelGatewayConfig)、Sentinel 网关适配器、WebFlux 集成、二级防护架构设计、OpenFeign 降级(FallbackFactory)、差异化降级处理 |
 | 7. API 网关 | Spring Cloud Gateway、Route/Predicate/Filter、lb://负载均衡路由、StripPrefix路径重写、GlobalFilter统一鉴权(JWT)、请求日志过滤器、CORS跨域配置、Sentinel网关限流 |
 | 8. 链路追踪 | Micrometer Tracing、Zipkin Server、Brave 桥接、Actuator 自动配置、全链路追踪、冷启动问题分析、性能瓶颈定位 |
 
@@ -125,7 +126,8 @@ springcloud-learn/
     ├── 02-Eureka.md        # Eureka 学习笔记
     ├── 03-Nacos.md         # Nacos 学习笔记
     ├── 04-OpenFeign.md     # OpenFeign 学习笔记
-    └── 05-Gateway.md       # Gateway 学习笔记
+    ├── 06-Zipkin.md        # Zipkin 链路追踪
+    └── 07-Sentinel.md     # Sentinel 熔断降级
 ```
 
 ---

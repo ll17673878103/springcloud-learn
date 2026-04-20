@@ -45,7 +45,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        // 1. 获取请求路径（去掉 StripPrefix 前缀之前的原始路径）
+        // 获取请求路径（去掉 StripPrefix 前缀之前的原始路径）
         ServerHttpRequest request = exchange.getRequest();
         String path = request.getURI().getPath();
 

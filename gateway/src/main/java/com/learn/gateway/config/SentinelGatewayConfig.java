@@ -82,16 +82,19 @@ public class SentinelGatewayConfig {
         // 1. 配置限流规则
         Set<GatewayFlowRule> rules = new HashSet<>();
 
-        // 限制 user-service 路由：每秒最多 5 个请求
-        // route ID 对应 application.yml 中的路由 ID
+        // 限制 user-service 路由：每秒最多 10 个请求
+        // 网关层做入口防护，阈值应高于下游服务自身的流控阈值
+        // 这样下游的流控和熔断规则才有机会生效
         rules.add(new GatewayFlowRule("user-service-routes")
-                .setCount(5)        // QPS 阈值：每秒 5 次
+                .setCount(10)       // QPS 阈值：每秒 10 次
                 .setIntervalSec(1)  // 统计时间窗口：1 秒
         );
 
-        // 限制 order-service 路由：每秒最多 3 个请求
+        // 限制 order-service 路由：每秒最多 10 个请求
+        // 网关放行 10/s，order-service 内部流控 user-service 调用为 5/s
+        // 形成两级防护：网关挡大流量，服务内挡精细流量
         rules.add(new GatewayFlowRule("order-service-route")
-                .setCount(3)        // QPS 阈值：每秒 3 次
+                .setCount(10)       // QPS 阈值：每秒 10 次
                 .setIntervalSec(1)  // 统计时间窗口：1 秒
         );
 
