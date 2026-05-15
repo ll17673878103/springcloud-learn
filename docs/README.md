@@ -22,7 +22,7 @@
 
 | 阶段 | 主题 | 优先级 | 状态 |
 |------|------|--------|------|
-| 9 | 分布式事务 - Seata | 🔥 高 | ⏳ |
+| 9 | 分布式事务 - Seata | 🔥 高 | 📖 学习中 |
 | 10 | 消息队列 - RocketMQ | 🔥 高 | ⏳ |
 | 11 | 分布式任务调度 - XXL-JOB | 🔥 高 | ⏳ |
 | 12 | 监控告警 - Prometheus + Grafana | 🟡 中 | ⏳ |
@@ -45,11 +45,16 @@
 | 7. API 网关 | Spring Cloud Gateway、Route/Predicate/Filter、lb://负载均衡路由、StripPrefix路径重写、GlobalFilter统一鉴权(JWT)、请求日志过滤器、CORS跨域配置、Sentinel网关限流 |
 | 8. 链路追踪 | Micrometer Tracing、Zipkin Server、Brave 桥接、Actuator 自动配置、全链路追踪、冷启动问题分析、性能瓶颈定位 |
 
-#### 待学习阶段
+#### 学习中
 
 | 阶段 | 核心知识点 |
 |------|------------|
 | 9. 分布式事务 - Seata | Seata Server 搭建(Nacos注册)、AT 模式、@GlobalTransactional、回滚日志(undo_log)、分布式事务场景实践 |
+
+#### 待学习阶段
+
+| 阶段 | 核心知识点 |
+|------|------------|
 | 10. 消息队列 - RocketMQ | RocketMQ 安装、生产者/消费者模型、消息可靠性保障、延迟消息、顺序消息、Spring Boot 集成 |
 | 11. 分布式任务调度 - XXL-JOB | XXL-JOB Admin 控制台、执行器注册、Cron 表达式、分片广播、失败重试、定时任务场景实践 |
 | 12. 监控告警 - Prometheus + Grafana | Micrometer 指标暴露、Prometheus 数据抓取、Grafana 可视化大盘、告警规则配置 |
@@ -127,7 +132,8 @@ springcloud-learn/
     ├── 03-Nacos.md         # Nacos 学习笔记
     ├── 04-OpenFeign.md     # OpenFeign 学习笔记
     ├── 06-Zipkin.md        # Zipkin 链路追踪
-    └── 07-Sentinel.md     # Sentinel 熔断降级
+    ├── 07-Sentinel.md     # Sentinel 熔断降级
+    └── 08-Seata.md        # Seata 分布式事务
 ```
 
 ---

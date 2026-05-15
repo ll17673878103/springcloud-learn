@@ -1,2 +1,32 @@
-# 空的 bootstrap 配置，仅用于 IDEA Services 分组显示
-# 实际配置均在 application.yml 中
+# bootstrap.yml - SpringCloud 环境统一配置
+#
+# 已合并 dev/pro 配置，统一使用 springcloud 命名空间
+# 如需切换环境，修改 spring.profiles.active 的值
+
+spring:
+  application:
+    name: order-service
+
+  profiles:
+    active: springcloud
+
+  cloud:
+    nacos:
+      server-addr: 39.106.163.134:8848
+      username: nacos
+      password: nacos
+      # 服务发现（注册中心）
+      discovery:
+        server-addr: 39.106.163.134:8848
+        namespace: 776aabdd-7458-4334-8f19-087c2ce404dc
+      # 配置中心
+      config:
+        server-addr: 39.106.163.134:8848
+        namespace: 776aabdd-7458-4334-8f19-087c2ce404dc
+        file-extension: yaml
+        timeout: 10000
+
+
+  # 从 Nacos 导入配置：自动查找 order-service-springcloud.yaml
+  config:
+    import: optional:nacos:${spring.application.name}-${spring.profiles.active}

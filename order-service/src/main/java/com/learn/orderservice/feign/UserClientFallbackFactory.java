@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 /**
@@ -45,6 +46,23 @@ public class UserClientFallbackFactory implements FallbackFactory<UserClient> {
                         "code", 503,
                         "message", reason + "，请稍后重试",
                         "data", ""
+                );
+            }
+
+            @Override
+            public Map<String, Object> deductBalance(Long userId, BigDecimal amount) {
+                String reason = switch (cause.getClass().getSimpleName()) {
+                    case "SocketTimeoutException" -> "用户服务响应超时";
+                    case "ConnectException" -> "用户服务连接失败（服务可能已下线）";
+                    case "CircuitBreakerOpenException", "CircuitBreakerStateException" -> "用户服务熔断器已打开";
+                    default -> "用户服务暂时不可用";
+                };
+
+                log.error("扣款降级处理 - userId: {}, amount: {}, 降级原因: {}", userId, amount, reason);
+
+                return Map.of(
+                        "success", false,
+                        "message", "扣款失败：" + reason
                 );
             }
         };

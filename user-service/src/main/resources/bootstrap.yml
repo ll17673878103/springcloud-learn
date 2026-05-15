@@ -1,16 +1,25 @@
-# bootstrap.yml - 公共配置
-#
-# 环境切换方式（任选其一）：
-#   1. 修改下方 active 的值：dev / pro
-#   2. JVM 参数：-Dspring.profiles.active=dev
-#   3. 环境变量：SPRING_PROFILES_ACTIVE=dev
-#
-#   dev → 加载 bootstrap-dev.yml（连 Nacos，拉取 user-service-dev.yaml）
-#   pro → 加载 bootstrap-pro.yml（连 Nacos，拉取 user-service-pro.yaml）
-
+# bootstrap.yml - SpringCloud 环境配置
 spring:
   application:
     name: user-service
 
   profiles:
-    active: dev
+    active: springcloud
+
+  cloud:
+    nacos:
+      server-addr: 39.106.163.134:8848
+      username: nacos
+      password: nacos
+      # 服务发现（注册中心）
+      discovery:
+        server-addr: 39.106.163.134:8848
+        namespace: 776aabdd-7458-4334-8f19-087c2ce404dc
+      # 配置中心
+      config:
+        namespace: 776aabdd-7458-4334-8f19-087c2ce404dc
+        file-extension: yaml
+
+  # 从 Nacos 导入配置（可选，如果 Nacos 不可用则使用本地配置）
+  config:
+    import: optional:nacos:${spring.application.name}-${spring.profiles.active}

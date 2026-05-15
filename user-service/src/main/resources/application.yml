@@ -10,25 +10,48 @@ user:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.31.183:3306/springcloud?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
-    username: root
-    password: luolei0525
+    url: jdbc:mysql://39.106.163.134:3306/springcloud?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: azai
+    password: ll291451
 
   data:
     redis:
-      host: 101.43.103.32
+      host: 39.106.163.134
       port: 6379
-      password: ll291451
+      password:
       timeout: 1000ms
       database: 0
+      sentinel:
+        password: ll291451
 
-management:
-  tracing:
-    sampling:
-      probability: 1.0 # 采样率 100%（学习阶段全采样，生产一般 0.1）
-  zipkin:
-    tracing:
-      endpoint: http://101.43.103.32:9411/api/v2/spans
+# MyBatis-Plus 配置
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.learn.userservice.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+
+# Seata 分布式事务配置
+seata:
+  enabled: true
+  application-id: user-service
+  tx-service-group: my_tx_group
+  service:
+    vgroup-mapping:
+      my_tx_group: default
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 39.106.163.134:8848
+      username: nacos
+      password: nacos
+      group: SEATA_GROUP
+      application: seata-server
+      namespace: f4514ed6-75e2-4721-8032-ed952ec5f23f
 
 logging:
   level:

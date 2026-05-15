@@ -6,9 +6,11 @@ spring:
     name: gateway
   cloud:
     nacos:
+      username: nacos
+      password: nacos
       discovery:
-        server-addr: 101.43.103.32:8848
-        namespace: a4444b64-9f98-4af6-882c-c3d265af4987
+        server-addr: 39.106.163.134:8848
+        namespace: 776aabdd-7458-4334-8f19-087c2ce404dc
     gateway:
       # 跨域配置（CORS）- 在网关层统一处理，前端不用直接访问各微服务
       globalcors:
@@ -49,7 +51,7 @@ management:
       probability: 1.0
   zipkin:
     tracing:
-      endpoint: http://101.43.103.32:9411/api/v2/spans
+      endpoint: http://39.106.163.134:9411/api/v2/spans
 
 logging:
   level:

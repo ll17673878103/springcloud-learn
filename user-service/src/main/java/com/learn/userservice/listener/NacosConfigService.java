@@ -27,6 +27,12 @@ public class NacosConfigService {
     @Value("${spring.cloud.nacos.config.namespace:}")
     private String namespace;
 
+    @Value("${spring.cloud.nacos.username:}")
+    private String username;
+
+    @Value("${spring.cloud.nacos.password:}")
+    private String password;
+
     // 从配置中动态获取，不要写死
     @Value("${spring.application.name}")
     private String applicationName;
@@ -55,6 +61,7 @@ public class NacosConfigService {
             log.info("分组: {}", group);
             log.info("文件格式: {}", fileExtension);
             log.info("监听 Data ID: {}", dataId);
+            log.info("认证信息 - username: {}, password: {}", username, password == null || password.isEmpty() ? "未配置" : "已配置");
 
             // 获取 ConfigService
             ConfigService configService = createConfigService();
@@ -97,6 +104,13 @@ public class NacosConfigService {
         properties.put("serverAddr", serverAddr);
         if (namespace != null && !namespace.isEmpty()) {
             properties.put("namespace", namespace);
+        }
+        // 添加认证信息
+        if (username != null && !username.isEmpty()) {
+            properties.put("username", username);
+        }
+        if (password != null && !password.isEmpty()) {
+            properties.put("password", password);
         }
         return NacosFactory.createConfigService(properties);
     }

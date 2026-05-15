@@ -1,50 +1,84 @@
+# 服务端口
 server:
   port: 8082
 
+# 数据库配置
 spring:
-  application:
-    name: order-service
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 101.43.103.32:8848
-        namespace: a4444b64-9f98-4af6-882c-c3d265af4987
-    # OpenFeign 超时配置
-    openfeign:
-      client:
-        config:
-          # 全局默认配置
-          default:
-            connect-timeout: 3000    # 连接超时 3秒
-            read-timeout: 5000       # 读取超时 5秒
-          # 针对特定服务的配置（优先级高于 default）
-          user-service:
-            connect-timeout: 2000    # user-service 连接超时 2秒
-            read-timeout: 3000       # user-service 读取超时 3秒
-      # 底层客户端替换为 OkHttp（连接池，性能更好）
-      okhttp:
-        enabled: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://39.106.163.134:3306/springcloud?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: ll291451
 
-# 方案A：Sentinel 配置（推荐）
+  # MyBatis-Plus 配置
+  sql-init-mode: never
+
+# MyBatis-Plus 配置
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.learn.orderservice.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+  # OpenFeign 超时配置
+  openfeign:
+    client:
+      config:
+        default:
+          connect-timeout: 3000
+          read-timeout: 5000
+        user-service:
+          connect-timeout: 2000
+          read-timeout: 3000
+    okhttp:
+      enabled: true
+
+# Sentinel 配置
 sentinel:
   transport:
-    dashboard: localhost:8080    # Sentinel Dashboard 地址（可选）
-    port: 8719                  # 与 Dashboard 通信的端口
-  eagerness: true               # 启动时立即初始化 Sentinel
+    dashboard: localhost:8080
+    port: 8719
+  eagerness: true
 
 feign:
   sentinel:
-    enabled: true               # 开启 Feign 对 Sentinel 的支持
+    enabled: true
 
-management:
-  tracing:
-    sampling:
-      probability: 1.0
-  zipkin:
-    tracing:
-      endpoint: http://101.43.103.32:9411/api/v2/spans
+# Seata 分布式事务配置
+seata:
+  enabled: true
+  application-id: order-service
+  tx-service-group: my_tx_group
+  service:
+    vgroup-mapping:
+      my_tx_group: default
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 39.106.163.134:8848
+      username: nacos
+      password: nacos
+      group: SEATA_GROUP
+      application: seata-server
+      namespace: f4514ed6-75e2-4721-8032-ed952ec5f23f
 
-# Feign 日志级别需要在 logging.level 中配置对应接口为 debug
+# 日志配置
 logging:
   level:
+    com.learn.orderservice: debug
     com.learn.orderservice.feign: debug
+    com.baomidou.mybatisplus: debug
+
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
