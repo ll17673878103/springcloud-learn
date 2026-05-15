@@ -287,7 +287,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 101.43.103.32:8848
+        server-addr: <YOUR_NACOS_IP>:8848
         namespace: c8086219-54ec-4b09-bcc3-1b13193f770e
     # OpenFeign 超时配置
     openfeign:

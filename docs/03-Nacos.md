@@ -262,7 +262,7 @@ spring:
 
   cloud:
     nacos:
-      server-addr: 101.43.103.32:8848   # Nacos 地址
+      server-addr: <YOUR_NACOS_IP>:8848   # Nacos 地址
 
       # 服务发现
       discovery:

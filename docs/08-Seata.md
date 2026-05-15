@@ -586,7 +586,7 @@ seata:
     type: nacos
     nacos:
       application: seata-server     # 注册到 Nacos 的服务名
-      server-addr: 101.43.103.32:8848   # ⭐ 改成你的 Nacos 地址
+      server-addr: <YOUR_NACOS_IP>:8848   # ⭐ 改成你的 Nacos 地址
       group: SEATA_GROUP
       namespace: a4444b64-9f98-4af6-882c-c3d265af4987   # ⭐ 改成你的 Nacos namespace
       cluster: default
@@ -611,7 +611,7 @@ seata:
       datasource: druid
       db-type: mysql
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://192.168.31.183:3306/seata?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai   # ⭐ 改成你的 MySQL
+      url: jdbc:mysql://<YOUR_MYSQL_IP>:3306/seata?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai   # ⭐ 改成你的 MySQL
       user: root
       password: luolei0525              # ⭐ 改成你的密码
       min-conn: 10
@@ -622,7 +622,7 @@ seata:
 
 ### 步骤四：在 Nacos 中添加 seataServer.properties
 
-打开 Nacos 控制台（http://101.43.103.32:8848/nacos），在对应的 namespace 下新建配置：
+打开 Nacos 控制台（http://<YOUR_NACOS_IP>:8848/nacos），在对应的 namespace 下新建配置：
 
 - **Data ID**：`seataServer.properties`
 - **Group**：`SEATA_GROUP`
@@ -646,7 +646,7 @@ store.session.mode=db
 store.db.datasource=druid
 store.db.dbType=mysql
 store.db.driverClassName=com.mysql.cj.jdbc.Driver
-store.db.url=jdbc:mysql://192.168.31.183:3306/seata?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+store.db.url=jdbc:mysql://<YOUR_MYSQL_IP>:3306/seata?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
 store.db.user=root
 store.db.password=luolei0525
 ```
@@ -746,7 +746,7 @@ CREATE TABLE IF NOT EXISTS `undo_log` (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4 COMMENT ='AT模式回滚日志表';
 ```
 
-> 我们项目目前 user-service 连的是 `springcloud` 数据库（`192.168.31.183:3306`），在这个库里建就行。
+> 我们项目目前 user-service 连的是 `springcloud` 数据库（`<YOUR_MYSQL_IP>:3306`），在这个库里建就行。
 
 ### 步骤三：配置 application.yml
 

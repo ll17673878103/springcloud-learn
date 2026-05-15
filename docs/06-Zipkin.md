@@ -115,7 +115,7 @@ management:
       probability: 1.0    # 采样率：1.0 = 100% 采样（学习阶段），生产环境建议 0.1
   zipkin:
     tracing:
-      endpoint: http://101.43.103.32:9411/api/v2/spans  # Zipkin Server 地址
+      endpoint: http://<YOUR_SERVER_IP>:9411/api/v2/spans  # Zipkin Server 地址
 ```
 
 ### 第四步：调试日志（可选）
@@ -151,7 +151,7 @@ java -jar zipkin-server-3.x.x-exec.jar
 docker run -d -p 9411:9411 openzipkin/zipkin
 ```
 
-启动后访问 `http://localhost:9411` 或 `http://101.43.103.32:9411` 查看 UI。
+启动后访问 `http://localhost:9411` 或 `http://<YOUR_SERVER_IP>:9411` 查看 UI。
 
 ---
 
